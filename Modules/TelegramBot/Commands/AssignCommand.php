@@ -6,6 +6,7 @@ use Longman\TelegramBot\Commands\UserCommand;
 use Longman\TelegramBot\Request;
 use App\Conversation;
 use App\User;
+use Modules\TelegramBot\Helpers\TelegramBotHelper
 
 class AssignCommand extends UserCommand
 {
@@ -37,6 +38,7 @@ class AssignCommand extends UserCommand
             }
         }
 
-        return Request::sendMessage($data);        // Send message!
+        $bot = new TelegramBotHelper();
+        $bot->sendMessage($text);
     }
 }
