@@ -31,7 +31,7 @@ class TelegramBotController extends Controller
      public function set()
     {
         try {
-            $result = $this->bot->setWebhook(config("app.url") . config("telegrambot.webhook"));
+            $result = $this->bot->setWebhook(config("app.url") . config("telegrambot.bot.webhook"));
             if ($result->isOk()) {
                 echo $result->getDescription();
             }
