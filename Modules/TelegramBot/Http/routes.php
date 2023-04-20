@@ -4,5 +4,6 @@ use App\Misc\Helper;
 Route::group(['middleware' => 'web', 'prefix' => "telegrambot", 'namespace' => 'Modules\TelegramBot\Http\Controllers'], function()
 {
     Route::get('/set', 'TelegramBotController@set');
-    Route::get('/webhook', 'TelegramBotController@webhook');
+    Route::post('/webhook', 'TelegramBotController@webhook');
+    Route::get('/getWebhookInfo', 'TelegramBotController@getWebhookInfo');
 });
