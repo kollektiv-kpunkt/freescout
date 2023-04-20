@@ -19,7 +19,7 @@ class AssignCommand extends UserCommand
     {
         $message = $this->getMessage();
 
-        $conversation = Conversation::where('user_id', null)->orderBy('created_at', 'desc')->get();
+        $conversation = Conversation::where("status",1)->where('user_id', null)->orderBy('created_at', 'desc')->get();
 
         if ($conversation->count() == 0) {
             $text = "There are no conversations to assign.";

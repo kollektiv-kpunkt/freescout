@@ -37,7 +37,24 @@ class TestCommand extends Command
     public function handle()
     {
 
-        $convos = \App\Conversation::where('user_id', null)->orderBy('created_at', 'desc')->get();
-        dd($convos);
+        $conversation = \App\Conversation::where("status",1)->where('user_id', null)->orderBy('created_at', 'desc')->get();
+
+        if ($conversation->count() == 0) {
+            $text = "There are no conversations to assign.";
+        } else if ($conversation->count() > 1) {
+            $text = "There are more than one conversation to assign. Please assign them one by one.";
+        } else {
+            $conversation = $conversation->first();
+            $shortname = $message->getText(true);
+            $user = User::where('email', 'like', $shortname . '%')->first();
+            if ($user) {
+                $conversation->changeUser($user->id, null);
+                $text = "Conversation assigned to {$user->first_name} {$user->last_name}";
+            } else {
+                $text = "User not found.";
+            }
+        }
+
+        dd($text, $conversation);
     }
 }
