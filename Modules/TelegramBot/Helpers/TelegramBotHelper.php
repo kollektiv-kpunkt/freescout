@@ -16,6 +16,8 @@ class TelegramBotHelper extends Telegram
             config('telegrambot.bot.token'),
             config('telegrambot.bot.username')
         );
+
+
     }
 
     /**
@@ -26,6 +28,7 @@ class TelegramBotHelper extends Telegram
         $result = Request::sendMessage([
             'chat_id' => config('telegrambot.bot.chat_id'),
             'text' => $message,
+            "parse_mode" => "HTML",
         ]);
 
         return $result;
