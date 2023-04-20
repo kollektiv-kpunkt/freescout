@@ -30,7 +30,7 @@ class AssignCommand extends UserCommand
             $shortname = $message->getText(true);
             $user = User::where('email', 'like', $shortname . '%')->first();
             if ($user) {
-                $conversation->user_id = $user->id;
+                $conversation->changeUser($user->id, null);
                 $conversation->save();
                 $text = "Conversation assigned to {$user->first_name} {$user->last_name}";
             } else {
