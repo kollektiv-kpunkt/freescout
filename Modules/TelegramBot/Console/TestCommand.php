@@ -37,18 +37,7 @@ class TestCommand extends Command
     public function handle()
     {
 
-        $bot = new TelegramBotHelper();
-        $messageBody = <<<EOD
-        Hey y'all\n
-        <b>[CUSTOMERNAME]</b> contacted you\n
-        <b>Subject:</b> «[SUBJECT]»\n
-        \n
-        EOD;
-        if (true) {
-            $messageBody .= "This conversation is not assigned to anyone yet. <b>Please make sure to do that ASAP.</b>\n \n";
-        }
-        $messageBody .= "You can view the conversation here: https://google.com\n";
-        $messageBody .= "So long 👋";
-        $bot->sendMessage($messageBody);
+        $convos = \App\Conversation::where('user_id', null)->orderBy('created_at', 'desc')->get();
+        dd($convos);
     }
 }
