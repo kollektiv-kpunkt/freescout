@@ -7,7 +7,7 @@ use Longman\TelegramBot\Request;
 use App\Conversation;
 use App\User;
 
-class TestCommand extends UserCommand
+class AssignCommand extends UserCommand
 {
     protected $name = 'assign';
     protected $description = 'Assign the latest conversation to a user';

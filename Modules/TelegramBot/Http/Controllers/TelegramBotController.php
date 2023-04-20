@@ -20,7 +20,7 @@ class TelegramBotController extends Controller
      public function __construct()
     {
         $this->bot = new TelegramBotHelper();
-        $this->bot->addCommandsPaths([__DIR__ . '/../../Commands']);
+        $this->bot->addCommandsPath(__DIR__ . '/../../Commands');
     }
 
 
