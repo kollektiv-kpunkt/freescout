@@ -31,7 +31,6 @@ class AssignCommand extends UserCommand
             $user = User::where('email', 'like', $shortname . '%')->first();
             if ($user) {
                 $conversation->changeUser($user->id, null);
-                $conversation->save();
                 $text = "Conversation assigned to {$user->first_name} {$user->last_name}";
             } else {
                 $text = "User not found.";
