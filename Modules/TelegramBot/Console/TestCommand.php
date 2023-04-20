@@ -45,10 +45,10 @@ class TestCommand extends Command
             $text = "There are more than one conversation to assign. Please assign them one by one.";
         } else {
             $conversation = $conversation->first();
-            $shortname = $message->getText(true);
-            $user = User::where('email', 'like', $shortname . '%')->first();
+            $shortname = "timothy";
+            $user = \App\User::where('email', 'like', $shortname . '%')->first();
             if ($user) {
-                $conversation->changeUser($user->id, null);
+                $conversation->changeUser($user->id, $user);
                 $text = "Conversation assigned to {$user->first_name} {$user->last_name}";
             } else {
                 $text = "User not found.";
