@@ -3,6 +3,7 @@ namespace Modules\TelegramBot\Console;
 
 use Illuminate\Console\Command;
 use Modules\TelegramBot\Helpers\TelegramBotHelper;
+use App\Jobs\SendNotificationToUsers;
 
 class TestCommand extends Command
 {
@@ -50,11 +51,15 @@ class TestCommand extends Command
             if ($user) {
                 $conversation->changeUser($user->id, $user);
                 $text = "Conversation assigned to {$user->first_name} {$user->last_name}";
+
+                $notification = \App\Jobs\SendNotificationToUsers::dispatch($user, $conversation, $conversation->threads)
+                    ->delay(0)
+                    ->onQueue('emails');
             } else {
                 $text = "User not found.";
             }
         }
 
-        dd($text, $conversation);
+        dd($text);
     }
 }

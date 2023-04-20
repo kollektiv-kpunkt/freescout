@@ -7,6 +7,7 @@ use Longman\TelegramBot\Request;
 use App\Conversation;
 use App\User;
 use Modules\TelegramBot\Helpers\TelegramBotHelper;
+use App\Jobs\SendNotificationToUsers;
 
 class AssignCommand extends UserCommand
 {
@@ -30,8 +31,12 @@ class AssignCommand extends UserCommand
             $shortname = $message->getText(true);
             $user = User::where('email', 'like', $shortname . '%')->first();
             if ($user) {
-                $conversation->changeUser($user->id, $user);
+                $conversation->changeUser($user->id, $user, true);
                 $text = "Conversation assigned to {$user->first_name} {$user->last_name}";
+
+                $notification = \App\Jobs\SendNotificationToUsers::dispatch($user, $conversation, $conversation->threads)
+                    ->delay(0)
+                    ->onQueue('emails');
             } else {
                 $text = "User not found.";
             }
