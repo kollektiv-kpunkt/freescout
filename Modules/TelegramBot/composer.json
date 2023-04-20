@@ -1,0 +1,25 @@
+{
+    "name": "freescout/telegrambot",
+    "description": "",
+    "authors": [
+        {
+            "name": "FreeScout",
+            "email": "support@freescout.net"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\TelegramBot\\Providers\\TelegramBotServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\TelegramBot\\": ""
+        }
+    }
+}

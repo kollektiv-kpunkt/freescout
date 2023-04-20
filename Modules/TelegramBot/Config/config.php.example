@@ -1,0 +1,19 @@
+<?php
+
+return [
+    'name' => 'TelegramBot',
+    "description" => "TelegramBot module",
+    "version" => "1.0.0",
+    "author" => "Timothy Justin Oesch",
+    "author_email" => "timothy@kpunkt.ch",
+    "author_website" => "https://kpunkt.ch",
+    "license" => "MIT",
+    "module_url" => "",
+
+    "bot" => [
+        "token" => "",
+        "username" => "",
+        "chat_id" => "",
+        "webhook" => "/telegrambot/webhook"
+    ]
+];
