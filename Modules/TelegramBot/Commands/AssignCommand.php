@@ -6,7 +6,7 @@ use Longman\TelegramBot\Commands\UserCommand;
 use Longman\TelegramBot\Request;
 use App\Conversation;
 use App\User;
-use Modules\TelegramBot\Helpers\TelegramBotHelper
+use Modules\TelegramBot\Helpers\TelegramBotHelper;
 
 class AssignCommand extends UserCommand
 {
