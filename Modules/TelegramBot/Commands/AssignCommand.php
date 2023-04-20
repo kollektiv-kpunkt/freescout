@@ -39,6 +39,6 @@ class AssignCommand extends UserCommand
         }
 
         $bot = new TelegramBotHelper();
-        $bot->sendMessage($text);
+        return $bot->sendMessage($text);
     }
 }
